@@ -6,7 +6,7 @@ interface Props {
 
 function CriticScore({ score }: Props) {
   return (
-    <Badge variant='solid' paddingX={2} borderRadius={5}>
+    <Badge variant='solid' textAlign='center' width={10} borderRadius={5}>
       {score}
     </Badge>
   );

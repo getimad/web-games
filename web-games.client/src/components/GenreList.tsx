@@ -4,10 +4,11 @@ import GenreCard from './GenreCard';
 import GenreCardSkeleton from './GenreCardSkeleton';
 
 interface Props {
+  selectedGenre: Genre | null;
   onSelectGenre: (genre: Genre) => void;
 }
 
-function GenreList({ onSelectGenre }: Props) {
+function GenreList({ selectedGenre, onSelectGenre }: Props) {
   const { data, error, isLoading } = useGenres();
 
   return (
@@ -16,7 +17,7 @@ function GenreList({ onSelectGenre }: Props) {
       <Text fontSize='3xl' fontWeight={700} paddingBottom={3}>Genres</Text>
       <List>
         {isLoading && Array.from({ length: 15 }).map((_, index) => <GenreCardSkeleton key={index} />)}
-        {data.map(genre => <GenreCard genre={genre} key={genre.id} onSelect={(genre) => onSelectGenre(genre)} />)}
+        {data.map(genre => <GenreCard genre={genre} key={genre.id} selected={selectedGenre} onSelect={(genre) => onSelectGenre(genre)} />)}
       </List>
     </Box>
   );

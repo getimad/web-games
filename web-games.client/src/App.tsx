@@ -15,6 +15,7 @@ function App() {
         lg: '250px 1fr'
       }}
       marginX={5}
+      gap={5}
     >
       <GridItem area='nav'>
         <NavBar />

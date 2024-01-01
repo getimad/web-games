@@ -11,7 +11,7 @@ interface Props {
 function GameCard({ game }: Props) {
   return (
     <Card variant='filled' borderRadius={10} overflow='hidden'>
-      <Image src={getCroppedImageUrl(game.background_image)} />
+      <Image minHeight={200} src={getCroppedImageUrl(game.background_image)} />
       <CardBody>
         <Heading fontSize='lg'>{game.name}</Heading>
         <HStack alignItems='center' justifyContent='space-between'>

@@ -1,10 +1,16 @@
 import { HStack } from '@chakra-ui/react';
 import PlatformSelector from './PlatformSelector';
+import { Platform } from '../hooks/useGames';
 
-function GameBar() {
+interface Props {
+  selectedPlatform: Platform | null;
+  onSelectPlatform: (platform: Platform) => void;
+}
+
+function GameBar({ selectedPlatform, onSelectPlatform }: Props) {
   return (
     <HStack paddingY={6}>
-      <PlatformSelector />
+      <PlatformSelector selected={selectedPlatform} onSelect={(platform) => onSelectPlatform(platform)} />
     </HStack>
   );
 }

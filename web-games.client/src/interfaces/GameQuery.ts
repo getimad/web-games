@@ -1,5 +1,5 @@
-import { Genre } from '../hooks/useGenres';
-import Platform from '../interfaces/Platform';
+import Genre from './Genre';
+import Platform from './Platform';
 import Order from './Order';
 
 interface GameQuery {

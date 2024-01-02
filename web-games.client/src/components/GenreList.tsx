@@ -1,7 +1,8 @@
 import { Box, List, Text } from '@chakra-ui/react';
-import useGenres, { Genre } from '../hooks/useGenres';
+import useGenres from '../hooks/useGenres';
 import GenreCard from './GenreCard';
 import GenreCardSkeleton from './GenreCardSkeleton';
+import Genre from '../interfaces/Genre';
 
 interface Props {
   selectedGenre: Genre | null;

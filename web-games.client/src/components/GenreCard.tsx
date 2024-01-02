@@ -9,7 +9,6 @@ interface Props {
 }
 
 function GenreCard({ genre, selected, onSelect }: Props) {
-
   return (
     <ListItem>
       <Button variant={selected?.id === genre.id ? 'solid' : 'ghost'} w='100%' justifyContent='left' paddingY={7} onClick={() => onSelect(genre)}>

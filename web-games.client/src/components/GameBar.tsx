@@ -1,6 +1,6 @@
 import { HStack } from '@chakra-ui/react';
 import PlatformSelector from './PlatformSelector';
-import { Platform } from '../hooks/usePlatforms';
+import Platform from '../interfaces/Platform';
 import SortSelector from './SortSelector';
 import Order from '../interfaces/Order';
 

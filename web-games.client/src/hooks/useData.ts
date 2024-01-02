@@ -30,7 +30,7 @@ const useData = <T>(path: string, requestConfig?: AxiosRequestConfig, deps?: unk
       });
 
     return () => controller.abort();
-  }, deps ? [...deps] : []);
+  }, deps ? deps : []);
 
   return { data, error, isLoading };
 };

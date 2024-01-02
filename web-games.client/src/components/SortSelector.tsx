@@ -9,7 +9,7 @@ interface Props {
 }
 
 function SortSelector({ selected, onSelect }: Props) {
-  const [target, setTarget] = useState<Order | null>(null);
+  const [target, setTarget] = useState<Order | null>({ label: 'Relevance', value: '' });
   const [orderBy, setOrderBy] = useState<string>('asc');
 
   const getFirstOrDefaultValue = (value: string | string[]): string => {
@@ -38,7 +38,7 @@ function SortSelector({ selected, onSelect }: Props) {
   return (
     <Menu closeOnSelect={false} onClose={onCloseMenu}>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order By: {selected?.label}
+        Order By: {selected?.label ?? 'Relevance'}
       </MenuButton>
       <MenuList>
         <MenuOptionGroup

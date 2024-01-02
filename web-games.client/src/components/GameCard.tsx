@@ -3,6 +3,7 @@ import { Game } from '../hooks/useGames';
 import PlatformIconList from './PlatformIconList';
 import CriticScore from './CriticScore';
 import getCroppedImageUrl from '../services/get-cropped-image-url';
+import nullBackgroundImage from '../assets/null-image-white.svg';
 
 interface Props {
   game: Game;
@@ -11,7 +12,7 @@ interface Props {
 function GameCard({ game }: Props) {
   return (
     <Card variant='filled' borderRadius={10} overflow='hidden'>
-      <Image minHeight={200} src={getCroppedImageUrl(game.background_image)} />
+      <Image minHeight={200} src={game.background_image === null ? nullBackgroundImage : getCroppedImageUrl(game.background_image)} />
       <CardBody>
         <Heading fontSize='lg'>{game.name}</Heading>
         <HStack alignItems='center' justifyContent='space-between'>

@@ -5,6 +5,7 @@ import GameGrid from './components/GameGrid';
 import GenreList from './components/GenreList';
 import GameBar from './components/GameBar';
 import GameQuery from './interfaces/GameQuery';
+import SearchContainer from './components/SearchContainer';
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
@@ -34,6 +35,7 @@ function App() {
         <Text fontSize='6xl' fontWeight={700}>Games</Text>
         <GameBar selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({ ...gameQuery, platform })} selectedOrder={gameQuery.order} onSelectOrder={order => setGameQuery({ ...gameQuery, order })} />
         <GameGrid gameQuery={gameQuery} />
+        <SearchContainer />
       </GridItem>
     </Grid>
   );

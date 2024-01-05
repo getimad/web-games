@@ -1,16 +1,17 @@
 import { SearchIcon } from '@chakra-ui/icons';
-import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Input, InputGroup, InputLeftElement, InputRightElement, Spinner } from '@chakra-ui/react';
 
 interface Props {
   query: string;
-  onSearch: (query: string) => void; 
+  isSearching: boolean;
+  onSearch: (query: string) => void;
 }
 
-function SearchBox({ query, onSearch }: Props) {
+function SearchBox({ query, isSearching, onSearch }: Props) {
   return (
     <InputGroup>
       <InputLeftElement alignContent='center' height='80px' width='80px'>
-        <SearchIcon color='gray.500' boxSize={6} />
+        <SearchIcon color='gray.500' boxSize={7} />
       </InputLeftElement>
       <Input
         bg='white'
@@ -24,6 +25,14 @@ function SearchBox({ query, onSearch }: Props) {
         boxShadow='xl'
         value={query}
         onChange={event => onSearch(event.target.value)} />
+      <InputRightElement alignContent='center' height='80px' width='80px'>
+        {isSearching &&
+          <Spinner
+          thickness='4px'
+          speed='0.65s'
+          color='gray.500'
+          size='lg' />}
+      </InputRightElement>
     </InputGroup>
   );
 }

@@ -1,5 +1,4 @@
 import { Box, Center, Stack } from '@chakra-ui/react';
-import { useEffect } from 'react';
 import SearchBox from './SearchBox';
 import SearchResult from './SearchResult';
 
@@ -8,10 +7,6 @@ interface Props {
 }
 
 function SearchContainer({ onOpenSearchBox }: Props) {
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-  }, []);
-
   return (
     <Center
       h='100%'

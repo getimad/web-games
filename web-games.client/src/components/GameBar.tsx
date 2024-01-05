@@ -5,7 +5,7 @@ import SortSelector from './SortSelector';
 import Order from '../interfaces/Order';
 import SearchButton from './SearchButton';
 import SearchContainer from './SearchContainer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   selectedPlatform: Platform | null;
@@ -16,6 +16,11 @@ interface Props {
 
 function GameBar({ selectedPlatform, onSelectPlatform, selectedOrder, onSelectOrder }: Props) {
   const [openSearchBox, setOpenSearchBox] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.body.style.overflow = openSearchBox ? 'hidden' : 'visible';
+  }, [openSearchBox]);
+
 
   return (
     <>

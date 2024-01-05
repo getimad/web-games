@@ -1,7 +1,12 @@
 import { SearchIcon } from '@chakra-ui/icons';
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
-function SearchBox() {
+interface Props {
+  query: string;
+  onSearch: (query: string) => void; 
+}
+
+function SearchBox({ query, onSearch }: Props) {
   return (
     <InputGroup>
       <InputLeftElement alignContent='center' height='80px' width='80px'>
@@ -16,7 +21,9 @@ function SearchBox() {
         fontSize={24}
         borderRadius='15px'
         fontWeight='500'
-        boxShadow='xl' />
+        boxShadow='xl'
+        value={query}
+        onChange={event => onSearch(event.target.value)} />
     </InputGroup>
   );
 }

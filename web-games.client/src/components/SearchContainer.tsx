@@ -10,7 +10,7 @@ function SearchContainer() {
   }, []);
 
   return (
-    <Center bg='rgba(0, 0, 0, 0.7)' h='100%' w='100%' position='fixed' top='0px' right='0px'>
+    <Center bg='rgba(0, 0, 0, 0.7)' h='100%' w='100%' position='fixed' top='0px' right='0px' zIndex='1'>
       <Stack h="60%" w="60%" minH='500px' minW='400px'>
         <SearchBox />
         <SearchResult />

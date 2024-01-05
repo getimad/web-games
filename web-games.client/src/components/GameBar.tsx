@@ -4,6 +4,7 @@ import Platform from '../interfaces/Platform';
 import SortSelector from './SortSelector';
 import Order from '../interfaces/Order';
 import SearchButton from './SearchButton';
+import SearchContainer from './SearchContainer';
 
 interface Props {
   selectedPlatform: Platform | null;
@@ -14,13 +15,16 @@ interface Props {
 
 function GameBar({ selectedPlatform, onSelectPlatform, selectedOrder, onSelectOrder }: Props) {
   return (
-    <HStack paddingY={6} gap={6} justifyContent='space-between'>
-      <HStack gap={6}>
-        <PlatformSelector selected={selectedPlatform} onSelect={(platform) => onSelectPlatform(platform)} />
-        <SortSelector selected={selectedOrder} onSelect={order => onSelectOrder(order)} />
+    <>
+      <HStack paddingY={6} gap={6} justifyContent='space-between'>
+        <HStack gap={6}>
+          <PlatformSelector selected={selectedPlatform} onSelect={(platform) => onSelectPlatform(platform)} />
+          <SortSelector selected={selectedOrder} onSelect={order => onSelectOrder(order)} />
+        </HStack>
+        <SearchButton />
       </HStack>
-      <SearchButton />
-    </HStack>
+      <SearchContainer />
+    </>
   );
 }
 

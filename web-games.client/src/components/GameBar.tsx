@@ -5,6 +5,7 @@ import SortSelector from './SortSelector';
 import Order from '../interfaces/Order';
 import SearchButton from './SearchButton';
 import SearchContainer from './SearchContainer';
+import { useState } from 'react';
 
 interface Props {
   selectedPlatform: Platform | null;
@@ -14,6 +15,8 @@ interface Props {
 }
 
 function GameBar({ selectedPlatform, onSelectPlatform, selectedOrder, onSelectOrder }: Props) {
+  const [openSearchBox, setOpenSearchBox] = useState<boolean>(false);
+
   return (
     <>
       <HStack paddingY={6} gap={6} justifyContent='space-between'>
@@ -21,9 +24,9 @@ function GameBar({ selectedPlatform, onSelectPlatform, selectedOrder, onSelectOr
           <PlatformSelector selected={selectedPlatform} onSelect={(platform) => onSelectPlatform(platform)} />
           <SortSelector selected={selectedOrder} onSelect={order => onSelectOrder(order)} />
         </HStack>
-        <SearchButton />
+        <SearchButton onOpenSearchBox={open => setOpenSearchBox(open)} />
       </HStack>
-      <SearchContainer />
+      {openSearchBox && <SearchContainer onOpenSearchBox={close => setOpenSearchBox(close)} />}
     </>
   );
 }

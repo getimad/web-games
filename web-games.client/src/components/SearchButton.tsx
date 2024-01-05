@@ -1,7 +1,11 @@
 import { SearchIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
 
-function SearchButton() {
+interface Props {
+  onOpenSearchBox: (open: boolean) => void;
+}
+
+function SearchButton({ onOpenSearchBox }: Props) {
   return (
     <Button
       justifyContent='left'
@@ -10,6 +14,7 @@ function SearchButton() {
       width='20%'
       minWidth='150px'
       cursor='text'
+      onClick={() => onOpenSearchBox(true)}
     >
       Search
     </Button>

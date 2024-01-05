@@ -13,7 +13,7 @@ function GenreCard({ genre, selected, onSelect }: Props) {
     <ListItem>
       <Button variant={selected?.id === genre.id ? 'solid' : 'ghost'} w='100%' justifyContent='left' paddingY={7} onClick={() => onSelect(genre)}>
         <HStack>
-          <Image src={getCroppedImageUrl(genre.image_background)} boxSize={10} borderRadius={7} />
+          <Image src={getCroppedImageUrl(genre.image_background)} boxSize={10} borderRadius={7} objectFit='cover' />
           <Text fontSize='sm' fontWeight='700'>{genre.name}</Text>
         </HStack>
       </Button>

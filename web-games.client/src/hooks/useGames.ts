@@ -1,14 +1,6 @@
 import GameQuery from '../interfaces/GameQuery';
 import useData from './useData';
-import Platform from '../interfaces/Platform';
-
-export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-}
+import Game from '../interfaces/Game';
 
 const useGames = (gameQuery: GameQuery) => useData<Game>(
   '/games', {

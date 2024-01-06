@@ -1,6 +1,6 @@
 import { Card, CardBody, CardHeader, Heading, Icon, Text } from '@chakra-ui/react';
 import { RiGamepadLine } from 'react-icons/ri';
-import { Game } from '../hooks/useGames';
+import Game from '../interfaces/Game';
 
 interface Props {
   game: Game;

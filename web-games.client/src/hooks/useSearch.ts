@@ -1,5 +1,5 @@
 import useData from './useData';
-import { Game } from './useGames';
+import Game from '../interfaces/Game';
 
 const useSearch = (searchQuery: string) => useData<Game>(
   '/games', {

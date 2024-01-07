@@ -6,6 +6,7 @@ function ToggleThemeSwitch() {
   return (
     <Switch
       size='lg'
+      colorScheme='gray'
       onChange={toggleColorMode}
     />
   );

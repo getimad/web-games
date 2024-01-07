@@ -13,7 +13,6 @@ function SearchResultItem({ game }: Props) {
       minH='120px'
       size='sm'
       cursor='pointer'
-      _hover={{ bg: 'gray.300' }}
     >
       <CardHeader paddingBottom={0} paddingX={3}>
         <Heading display='flex' justifyContent='space-between' size='md' h='50px'>

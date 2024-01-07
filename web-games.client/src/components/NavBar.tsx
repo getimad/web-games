@@ -4,7 +4,7 @@ import ToggleThemeSwitch from './ToggleThemeSwitch';
 
 function NavBar() {
   return (
-    <Box px={4}>
+    <Box pt={3}>
       <Flex h={16} alignItems='center' justifyContent='space-between'>
         <Image src={logo} boxSize={12} />
         <Spacer />

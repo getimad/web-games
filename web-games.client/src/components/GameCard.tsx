@@ -11,7 +11,7 @@ interface Props {
 
 function GameCard({ game }: Props) {
   return (
-    <Card variant='filled' borderRadius={10} overflow='hidden'>
+    <Card variant='filled' borderRadius={10} overflow='hidden' boxShadow='lg'>
       <Image minHeight={200} src={game.background_image === null ? nullBackgroundImage : getCroppedImageUrl(game.background_image)} />
       <CardBody paddingY={2}>
         <HStack alignItems='center' justifyContent='space-between'>

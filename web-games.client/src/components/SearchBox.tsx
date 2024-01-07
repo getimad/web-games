@@ -15,7 +15,6 @@ function SearchBox({ query, isSearching, onSearch }: Props) {
       </InputLeftElement>
       <Input
         autoFocus
-        bg='white'
         variant='uns'
         placeholder='Search'
         height='80px'

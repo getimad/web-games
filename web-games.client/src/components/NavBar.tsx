@@ -1,12 +1,15 @@
-import { Box, Flex, Image, Spacer } from '@chakra-ui/react';
-import logo from '../assets/getimad-logo-white.svg';
+import { Box, Flex, Image, Spacer, useColorMode } from '@chakra-ui/react';
+import whiteLogo from '../assets/logo-white.svg';
+import blackLogo from '../assets/logo-black.svg';
 import ToggleThemeSwitch from './ToggleThemeSwitch';
 
 function NavBar() {
+  const { colorMode } = useColorMode();
+
   return (
-    <Box pt={3}>
-      <Flex h={16} alignItems='center' justifyContent='space-between'>
-        <Image src={logo} boxSize={12} />
+    <Box backgroundColor={colorMode === 'dark' ? 'oGray.900' : 'oGray.50'} backdropFilter='saturate(180%) blur(10px)'>
+      <Flex px={5} h={16} alignItems='center' justifyContent='space-between'>
+        <Image src={colorMode === 'dark' ? whiteLogo : blackLogo} boxSize={9} />
         <Spacer />
         <ToggleThemeSwitch />
       </Flex>

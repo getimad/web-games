@@ -9,7 +9,7 @@ function GameHeading({ gameQuery }: Props) {
   const content = `${gameQuery.platform?.name || ''} ${gameQuery.genre?.name || ''} Games`;
 
   return (
-    <Heading fontSize='6xl'>
+    <Heading fontSize={['5xl', '6xl']}>
       {content}
     </Heading>
   );

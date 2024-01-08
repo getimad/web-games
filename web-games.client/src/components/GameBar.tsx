@@ -1,4 +1,4 @@
-import { HStack } from '@chakra-ui/react';
+import { HStack, Stack } from '@chakra-ui/react';
 import PlatformSelector from './PlatformSelector';
 import Platform from '../interfaces/Platform';
 import SortSelector from './SortSelector';
@@ -24,13 +24,13 @@ function GameBar({ selectedPlatform, onSelectPlatform, selectedOrder, onSelectOr
 
   return (
     <>
-      <HStack paddingY={6} gap={6} justifyContent='space-between'>
+      <Stack paddingY={6} gap={6} justifyContent='space-between' direction={['column', null, 'row']} >
         <HStack gap={6}>
           <PlatformSelector selected={selectedPlatform} onSelect={(platform) => onSelectPlatform(platform)} />
           <SortSelector selected={selectedOrder} onSelect={order => onSelectOrder(order)} />
         </HStack>
         <SearchButton onOpenSearchBox={open => setOpenSearchBox(open)} />
-      </HStack>
+      </Stack>
       {openSearchBox && <SearchContainer onOpenSearchBox={close => setOpenSearchBox(close)} />}
     </>
   );

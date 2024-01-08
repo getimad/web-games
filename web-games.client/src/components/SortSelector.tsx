@@ -19,7 +19,7 @@ function SortSelector({ selected, onSelect }: Props) {
     return value;
   };
 
-  const onCloseMenu = () => {
+  const onSelectMenu = () => {
     return onSelect({
       label: target?.label ?? 'Relevance',
       value: (orderBy === 'asc' ? '' : '-') + target?.value
@@ -36,7 +36,7 @@ function SortSelector({ selected, onSelect }: Props) {
   ];
 
   return (
-    <Menu closeOnSelect={false} onClose={onCloseMenu}>
+    <Menu closeOnSelect={false}>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
         Order By: {selected?.label ?? 'Relevance'}
       </MenuButton>
@@ -46,7 +46,10 @@ function SortSelector({ selected, onSelect }: Props) {
           title='Order By'
           type='radio'
           value={target?.value}
-          onChange={(value) => setTarget(sortOrders.find(o => o.value === value) ?? null)}
+          onChange={value => {
+            setTarget(sortOrders.find(o => o.value === value) ?? null);
+            onSelectMenu();
+          }}
         >
           {sortOrders.map(order =>
             <MenuItemOption
@@ -58,7 +61,15 @@ function SortSelector({ selected, onSelect }: Props) {
           )}
         </MenuOptionGroup>
         <MenuDivider />
-        <MenuOptionGroup defaultValue='asc' type='radio' value={orderBy} onChange={value => setOrderBy(getFirstOrDefaultValue(value))} >
+        <MenuOptionGroup
+          defaultValue='asc'
+          type='radio'
+          value={orderBy}
+          onChange={value => {
+            setOrderBy(getFirstOrDefaultValue(value));
+            onSelectMenu();
+          }}
+        >
           <MenuItemOption value='asc'>Ascending</MenuItemOption>
           <MenuItemOption value='desc'>Descending</MenuItemOption>
         </MenuOptionGroup>

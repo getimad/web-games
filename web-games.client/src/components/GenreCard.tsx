@@ -9,9 +9,14 @@ interface Props {
 }
 
 function GenreCard({ genre, selected, onSelect }: Props) {
+  const onGenreClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    onSelect(genre);
+  };
+
   return (
     <ListItem>
-      <Button variant={selected?.id === genre.id ? 'solid' : 'ghost'} w='100%' justifyContent='left' paddingY={7} onClick={() => onSelect(genre)}>
+      <Button variant={selected?.id === genre.id ? 'solid' : 'ghost'} w='100%' justifyContent='left' paddingY={7} onClick={onGenreClick}>
         <HStack>
           <Image src={getCroppedImageUrl(genre.image_background)} boxSize={10} borderRadius={7} objectFit='cover' />
           <Text fontSize='sm' fontWeight='700'>{genre.name}</Text>

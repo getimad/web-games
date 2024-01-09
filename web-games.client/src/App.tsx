@@ -26,11 +26,11 @@ function App() {
         <NavBar />
       </GridItem>
       <Show above='lg'>
-        <GridItem area='aside' margin={[null, null, null, '80px 0 0 20px']}>
+        <GridItem area='aside' margin={[null, null, null, '50px 0 0 20px']}>
           <GenreList selectedGenre={gameQuery.genre} onSelectGenre={genre => setGameQuery({ ...gameQuery, genre })} />
         </GridItem>
       </Show>
-      <GridItem area='main' margin={['80px 20px 0 20px', null, null, '80px 20px 0 0']}>
+      <GridItem area='main' margin={['50px 20px 0 20px', null, null, '50px 20px 0 0']}>
         <GameHeading gameQuery={gameQuery} />
         <GameBar selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({ ...gameQuery, platform })} selectedOrder={gameQuery.order} onSelectOrder={order => setGameQuery({ ...gameQuery, order })} />
         <GameGrid gameQuery={gameQuery} />

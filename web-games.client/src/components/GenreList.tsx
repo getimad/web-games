@@ -14,12 +14,12 @@ function GenreList({ selectedGenre, onSelectGenre }: Props) {
 
   return (
     <Box>
-      {error && <Text>{error}</Text>}
+      {error && <Text>{error.message}</Text>}
       <Text fontSize='3xl' fontWeight={700} paddingBottom={3}>Genres</Text>
       <List>
         {isLoading
           ? Array.from({ length: 15 }).map((_, index) => <GenreCardSkeleton key={index} />)
-          : data.map(genre => <GenreCard genre={genre} key={genre.id} selected={selectedGenre} onSelect={(genre) => onSelectGenre(genre)} />)}
+          : data?.results.map(genre => <GenreCard genre={genre} key={genre.id} selected={selectedGenre} onSelect={(genre) => onSelectGenre(genre)} />)}
       </List>
     </Box>
   );

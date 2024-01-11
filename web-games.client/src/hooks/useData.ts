@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import apiClient from '../services/api-client';
 import { AxiosRequestConfig, CanceledError } from 'axios';
 
-interface FerchResponse<T> {
+export interface FetchResponse<T> {
   count: number;
   results: T[];
 }
@@ -17,7 +17,7 @@ const useData = <T>(path: string, requestConfig?: AxiosRequestConfig, deps?: unk
 
     setIsLoading(true);
 
-    apiClient.get<FerchResponse<T>>(path, { signal: controller.signal, ...requestConfig })
+    apiClient.get<FetchResponse<T>>(path, { signal: controller.signal, ...requestConfig })
       .then(res => {
         setData(res.data.results);
         setIsLoading(false);

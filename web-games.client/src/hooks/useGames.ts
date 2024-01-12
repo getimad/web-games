@@ -2,7 +2,7 @@ import GameQuery from '../interfaces/GameQuery';
 import Game from '../interfaces/Game';
 import { useQuery } from '@tanstack/react-query';
 import apiClient from '../services/api-client';
-import { FetchResponse } from './useData';
+import FetchResponse from '../interfaces/FetchResponse';
 
 const useGames = (gameQuery: GameQuery) => useQuery<FetchResponse<Game>>({
   queryKey: ['games', gameQuery],

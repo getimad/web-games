@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import apiClient from '../services/api-client';
 import Platform from '../interfaces/Platform';
-import { FetchResponse } from './useData';
+import FetchResponse from '../interfaces/FetchResponse';
 
 const usePlatforms = () => useQuery<FetchResponse<Platform>>({
   queryKey: ['platforms'],

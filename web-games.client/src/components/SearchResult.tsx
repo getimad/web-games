@@ -18,7 +18,7 @@ function SearchResult({ searchQuery, onReady }: Props) {
   return (
     <SimpleGrid spacing={2} templateColumns='repeat(auto-fill, minmax(250px, 1fr))' overflowY='scroll'>
       {!isLoading
-        && data.map((game, index) => <SearchResultItem key={index} game={game} />)}
+        && data?.results.map((game, index) => <SearchResultItem key={index} game={game} />)}
     </SimpleGrid>
   );
 }

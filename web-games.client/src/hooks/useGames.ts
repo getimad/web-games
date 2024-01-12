@@ -11,7 +11,7 @@ const useGames = (gameQuery: GameQuery) => useQuery<FetchResponse<Game>>({
       .get<FetchResponse<Game>>('/games', {
         params: {
           genres: gameQuery.genre?.id,
-          platforms: gameQuery.platform?.id,
+          parent_platforms: gameQuery.platform?.id,
           ordering: gameQuery.order?.value
         }
       })

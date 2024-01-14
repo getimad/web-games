@@ -7,6 +7,8 @@ import GameBar from './components/GameBar';
 import GameQuery from './interfaces/GameQuery';
 import GameHeading from './components/GameHeading';
 
+const NUMBER_OF_GAMES_PER_PAGE = 12;
+
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
@@ -33,7 +35,7 @@ function App() {
       <GridItem area='main' margin={['50px 20px 0 20px', null, null, '50px 20px 0 0']}>
         <GameHeading gameQuery={gameQuery} />
         <GameBar selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({ ...gameQuery, platform })} selectedOrder={gameQuery.order} onSelectOrder={order => setGameQuery({ ...gameQuery, order })} />
-        <GameGrid gameQuery={gameQuery} />
+        <GameGrid gameQuery={gameQuery} pageSize={NUMBER_OF_GAMES_PER_PAGE} />
       </GridItem>
     </Grid>
   );

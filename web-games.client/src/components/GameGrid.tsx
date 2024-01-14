@@ -6,14 +6,15 @@ import GameQuery from '../interfaces/GameQuery';
 
 interface Props {
   gameQuery: GameQuery;
+  pageSize: number;
 }
 
-function GameGrid({ gameQuery }: Props) {
-  const { data, error, isLoading } = useGames(gameQuery);
+function GameGrid({ gameQuery, pageSize }: Props) {
+  const { data, error, isLoading } = useGames(gameQuery, pageSize);
 
   const renderGameCards = () => {
     if (isLoading) {
-      return Array.from({ length: 15 }).map((_, index) => <GameCardSkeleton key={index} />);
+      return Array.from({ length: pageSize }).map((_, index) => <GameCardSkeleton key={index} />);
     }
 
     return data?.results.map(game => <GameCard key={game.id} game={game} />);

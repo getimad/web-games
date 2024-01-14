@@ -6,10 +6,11 @@ import APIClient from '../services/api-client';
 
 const apiClient = new APIClient<Game>('/games');
 
-const useGames = (gameQuery: GameQuery) => useQuery<FetchResponse<Game>>({
+const useGames = (gameQuery: GameQuery, pageSize: number) => useQuery<FetchResponse<Game>>({
   queryKey: ['games', gameQuery],
   queryFn: () => apiClient.getAll({
     params: {
+      page_size: pageSize,
       genres: gameQuery.genre?.id,
       parent_platforms: gameQuery.platform?.id,
       ordering: gameQuery.order?.value

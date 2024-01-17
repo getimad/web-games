@@ -2,14 +2,13 @@ import { Box, List, Text } from '@chakra-ui/react';
 import useGenres from '../hooks/useGenres';
 import GenreCard from './GenreCard';
 import GenreCardSkeleton from './GenreCardSkeleton';
-import Genre from '../interfaces/Genre';
 
 interface Props {
-  selectedGenre: Genre | null;
-  onSelectGenre: (genre: Genre) => void;
+  selectedGenreId?: number;
+  onSelectGenre: (genreId: number) => void;
 }
 
-function GenreList({ selectedGenre, onSelectGenre }: Props) {
+function GenreList({ selectedGenreId, onSelectGenre }: Props) {
   const { data, error, isLoading } = useGenres();
 
   if (error) {
@@ -21,7 +20,7 @@ function GenreList({ selectedGenre, onSelectGenre }: Props) {
       return Array.from({ length: 15 }).map((_, index) => <GenreCardSkeleton key={index} />);
     }
 
-    return data?.results.map(genre => <GenreCard genre={genre} key={genre.id} selected={selectedGenre} onSelect={(genre) => onSelectGenre(genre)} />);
+    return data?.results.map(genre => <GenreCard genre={genre} key={genre.id} selected={selectedGenreId} onSelect={(genre) => onSelectGenre(genre.id)} />);
   }
 
   return (

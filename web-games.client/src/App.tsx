@@ -31,7 +31,7 @@ function App() {
         </GridItem>
         <Show above='lg'>
           <GridItem area='aside' margin={[null, null, null, '50px 0 0 20px']}>
-            <GenreList selectedGenre={gameQuery.genre} onSelectGenre={genre => setGameQuery({ ...gameQuery, genre })} />
+            <GenreList selectedGenreId={gameQuery.genreId} onSelectGenre={genreId => setGameQuery({ ...gameQuery, genreId: genreId })} />
           </GridItem>
         </Show>
         <GridItem area='main' margin={['50px 20px 0 20px', null, null, '50px 20px 0 0']}>

@@ -11,7 +11,7 @@ const useGames = (gameQuery: GameQuery, pageSize: number) => useInfiniteQuery<Fe
   queryFn: ({ pageParam = 1 }) => apiClient.getAll({
     params: {
       page_size: pageSize,
-      genres: gameQuery.genre?.id,
+      genres: gameQuery.genreId,
       parent_platforms: gameQuery.platform?.id,
       ordering: gameQuery.order?.value,
       page: pageParam,

@@ -1,9 +1,8 @@
-import Platform from './Platform';
 import Order from './Order';
 
 interface GameQuery {
   genreId?: number;
-  platform: Platform | null;
+  platformId?: number;
   order: Order | null;
 }
 

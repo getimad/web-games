@@ -12,7 +12,7 @@ const useGames = (gameQuery: GameQuery, pageSize: number) => useInfiniteQuery<Fe
     params: {
       page_size: pageSize,
       genres: gameQuery.genreId,
-      parent_platforms: gameQuery.platform?.id,
+      parent_platforms: gameQuery.platformId,
       ordering: gameQuery.order?.value,
       page: pageParam,
     }

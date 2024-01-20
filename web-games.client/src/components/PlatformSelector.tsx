@@ -4,7 +4,7 @@ import usePlatforms from '../hooks/usePlatforms';
 import useGameQueryStore from '../store';
 
 function PlatformSelector() {
-  const { gameQuery, setPlatformId } = useGameQueryStore();
+  const { gameQuery, setPlatformId } = useGameQueryStore(s => ({ gameQuery: s.gameQuery, setPlatformId: s.setPlatformId }));
 
   const { data } = usePlatforms();
   const platform = data?.results.find(platform => platform.id === gameQuery.platformId);

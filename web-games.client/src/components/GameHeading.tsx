@@ -4,7 +4,7 @@ import usePlatforms from '../hooks/usePlatforms';
 import useGameQueryStore from '../store';
 
 function GameHeading() {
-  const { gameQuery } = useGameQueryStore();
+  const gameQuery = useGameQueryStore(s => s.gameQuery);
 
   const { data: genreData } = useGenres();
   const genre = genreData?.results.find(genre => genre.id === gameQuery.genreId);

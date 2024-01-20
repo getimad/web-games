@@ -8,7 +8,7 @@ interface Props {
 }
 
 function GenreCard({ genre }: Props) {
-  const { gameQuery, setGenreId } = useGameQueryStore();
+  const { gameQuery, setGenreId } = useGameQueryStore(s => ({ gameQuery: s.gameQuery, setGenreId: s.setGenreId }));
 
   const onGenreClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

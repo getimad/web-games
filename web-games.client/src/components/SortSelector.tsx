@@ -5,7 +5,7 @@ import Order from '../interfaces/Order';
 import useGameQueryStore from '../store';
 
 function SortSelector() {
-  const { gameQuery, setOrder } = useGameQueryStore();
+  const { gameQuery, setOrder } = useGameQueryStore(s => ({ gameQuery: s.gameQuery, setOrder: s.setOrder }));
 
   const [target, setTarget] = useState<Order | null>({ label: 'Relevance', value: '' });
   const [orderBy, setOrderBy] = useState<string>('asc');

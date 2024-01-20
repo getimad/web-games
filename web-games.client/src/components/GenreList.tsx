@@ -3,12 +3,7 @@ import useGenres from '../hooks/useGenres';
 import GenreCard from './GenreCard';
 import GenreCardSkeleton from './GenreCardSkeleton';
 
-interface Props {
-  selectedGenreId?: number;
-  onSelectGenre: (genreId: number) => void;
-}
-
-function GenreList({ selectedGenreId, onSelectGenre }: Props) {
+function GenreList() {
   const { data, error, isLoading } = useGenres();
 
   if (error) {
@@ -20,7 +15,7 @@ function GenreList({ selectedGenreId, onSelectGenre }: Props) {
       return Array.from({ length: 15 }).map((_, index) => <GenreCardSkeleton key={index} />);
     }
 
-    return data?.results.map(genre => <GenreCard genre={genre} key={genre.id} selected={selectedGenreId} onSelect={(genre) => onSelectGenre(genre.id)} />);
+    return data?.results.map(genre => <GenreCard genre={genre} key={genre.id} />);
   }
 
   return (

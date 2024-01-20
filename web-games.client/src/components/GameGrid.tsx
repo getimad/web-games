@@ -1,16 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { SimpleGrid, Text, Box, Spinner, HStack } from '@chakra-ui/react';
-import GameQuery from '../interfaces/GameQuery';
 import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
+import useGameQueryStore from '../store';
 
 interface Props {
-  gameQuery: GameQuery;
   pageSize: number;
 }
 
-function GameGrid({ gameQuery, pageSize }: Props) {
+function GameGrid({ pageSize }: Props) {
+  const { gameQuery } = useGameQueryStore();
+
   const loadMoreRef = useRef(null);
   const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage, error } = useGames(gameQuery, pageSize);
 

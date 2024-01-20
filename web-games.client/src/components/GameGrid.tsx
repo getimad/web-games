@@ -3,17 +3,12 @@ import { SimpleGrid, Text, Box, Spinner, HStack } from '@chakra-ui/react';
 import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
-import useGameQueryStore from '../store';
 
-interface Props {
-  pageSize: number;
-}
+const pageSize = 12;  // NUMBER OF GAMES PER PAGE
 
-function GameGrid({ pageSize }: Props) {
-  const { gameQuery } = useGameQueryStore();
-
+function GameGrid() {
   const loadMoreRef = useRef(null);
-  const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage, error } = useGames(gameQuery, pageSize);
+  const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage, error } = useGames(pageSize);
 
   useEffect(() => {
     if (isLoading || isFetchingNextPage) return;

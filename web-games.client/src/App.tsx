@@ -6,8 +6,6 @@ import GameBar from './components/GameBar';
 import GameHeading from './components/GameHeading';
 import ScrollToTopButton from './components/ScrollToTopButton';
 
-const NUMBER_OF_GAMES_PER_PAGE = 12;
-
 function App() {
   return (
     <>
@@ -33,7 +31,7 @@ function App() {
         <GridItem area='main' margin={['50px 20px 0 20px', null, null, '50px 20px 0 0']}>
           <GameHeading />
           <GameBar />
-          <GameGrid pageSize={NUMBER_OF_GAMES_PER_PAGE} />
+          <GameGrid />
         </GridItem>
       </Grid>
       <ScrollToTopButton />

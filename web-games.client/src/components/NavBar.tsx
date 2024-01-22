@@ -7,7 +7,7 @@ function NavBar() {
   const { colorMode } = useColorMode();
 
   return (
-    <Box backgroundColor={colorMode === 'dark' ? 'oGray.900' : 'oGray.50'} backdropFilter='saturate(180%) blur(10px)'>
+    <Box backgroundColor={colorMode === 'dark' ? 'oGray.900' : 'oGray.50'} backdropFilter='saturate(180%) blur(10px)' position='fixed' w='100%' zIndex='200'>
       <Flex px={5} h={16} alignItems='center' justifyContent='space-between'>
         <Image src={colorMode === 'dark' ? whiteLogo : blackLogo} boxSize={9} />
         <Spacer />

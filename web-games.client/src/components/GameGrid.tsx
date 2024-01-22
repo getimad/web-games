@@ -44,7 +44,10 @@ function GameGrid() {
   return (
     <Box>
       {error && <Text>{error.message}</Text>}
-      <SimpleGrid templateColumns='repeat(auto-fill, minmax(300px, 1fr))' spacing={3}>
+      <SimpleGrid
+        templateColumns='repeat(auto-fill, minmax(300px, 1fr))'
+        spacing={5}
+      >
         {renderGameCards()}
       </SimpleGrid>
       <HStack justifyContent='center' py={10}>

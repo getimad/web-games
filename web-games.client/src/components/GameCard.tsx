@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardBody, Image, Heading, HStack } from '@chakra-ui/react';
 import Game from '../interfaces/Game';
 import PlatformIconList from './PlatformIconList';
@@ -10,8 +12,27 @@ interface Props {
 }
 
 function GameCard({ game }: Props) {
+  const [hover, setHover] = useState(false);
+  const navigate = useNavigate();
+
+  const onHandleClick = () => {
+    navigate(`/games/${game.slug}`);
+  };
+
   return (
-    <Card variant='filled' borderRadius={10} overflow='hidden' boxShadow='lg'>
+    <Card
+      variant='filled'
+      borderRadius={10}
+      overflow='hidden'
+      boxShadow='lg'
+      onClick={onHandleClick}
+      style={{
+        transition: 'transform 0.2s ease-in-out',
+        transform: hover ? 'scale(1.03)' : 'scale(1)'
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       <Image minHeight={200} src={game.background_image === null ? nullBackgroundImage : getCroppedImageUrl(game.background_image)} />
       <CardBody paddingY={2}>
         <HStack alignItems='center' justifyContent='space-between'>

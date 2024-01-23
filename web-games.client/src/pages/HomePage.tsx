@@ -17,11 +17,11 @@ function HomePage() {
       }}
     >
       <Show above='lg'>
-        <GridItem area='aside' margin={[null, null, null, '0 0 0 20px']}>
+        <GridItem area='aside' marginX='3rem'>
           <GenreList />
         </GridItem>
       </Show>
-      <GridItem area='main' margin={['0 20px 0 20px', null, null, '0 20px 0 20px']}>
+      <GridItem area='main' marginX='3rem'>
         <GameHeading />
         <GameBar />
         <GameGrid />

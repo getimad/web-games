@@ -24,8 +24,8 @@ function ScrollToTopButton() {
   return (
     <Button
       position='fixed'
-      bottom={5}
-      right={5}
+      bottom='1rem'
+      right='0rem'
       borderRadius='100px'
       h='3rem'
       w='3rem'

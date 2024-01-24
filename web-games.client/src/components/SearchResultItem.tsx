@@ -1,12 +1,16 @@
-import { Card, CardBody, CardHeader, Heading, Icon, Text } from '@chakra-ui/react';
-import { RiGamepadLine } from 'react-icons/ri';
+import { Card, CardBody, CardHeader, Heading, Text, Image, HStack, Box, Center } from '@chakra-ui/react';
 import Game from '../interfaces/Game';
+import getCroppedImageUrl from '../services/get-cropped-image-url';
+import nullBackgroundImage from '../assets/null-image-white.svg';
+import PlatformIconList from './PlatformIconList';
 
 interface Props {
   game: Game;
 }
 
 function SearchResultItem({ game }: Props) {
+  console.log(game);
+
   return (
     <Card
       borderRadius='15px'
@@ -14,19 +18,28 @@ function SearchResultItem({ game }: Props) {
       size='sm'
       cursor='pointer'
     >
-      <CardHeader paddingBottom={0} paddingX={3}>
-        <Heading display='flex' justifyContent='space-between' size='md' h='50px'>
-          {game.name}
-          <Icon as={RiGamepadLine} boxSize={6} />
-        </Heading>
-      </CardHeader>
-      <CardBody>
+      <HStack >
+        <Center margin='1rem'>
+          <Image
+            src={!game?.background_image ? nullBackgroundImage : getCroppedImageUrl(game.background_image)}
+            w='150px'
+            borderRadius='1rem'
+          />
+        </Center>
 
-        {/* API: Get game info by ID when hover */}
-
-        <Text as='u' fontSize={11} fontWeight='700' position='absolute' bottom='12px'>Read more</Text>
-      </CardBody>
-    </Card>
+        <Box>
+          <CardHeader paddingBottom={0} paddingX={3}>
+            <Heading size='md' h='30px'>
+              {game.name}
+            </Heading>
+            {game.parent_platforms && <PlatformIconList platforms={game.parent_platforms.map(p => p.platform)} />}
+          </CardHeader>
+          <CardBody w='100%'>
+            <Text as='u' fontSize={11} fontWeight='700' position='absolute' bottom='1rem'>Read more</Text>
+          </CardBody>
+        </Box>
+      </HStack>
+    </Card >
   );
 }
 

@@ -16,7 +16,7 @@ function GameCard({ game }: Props) {
   const navigate = useNavigate();
 
   const onHandleClick = () => {
-    navigate(`/games/${game.slug}`);
+    navigate(`/games/${game.slug}`, { state: { imageUri: game.background_image } });
   };
 
   return (

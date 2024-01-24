@@ -1,27 +1,52 @@
 import useScreeshots from '../hooks/useScreenshots';
-import { Box, Image, List } from '@chakra-ui/react';
+import { Box, Center, Image, List, Spinner } from '@chakra-ui/react';
 import getCroppedImageUrl from '../services/get-cropped-image-url';
 
 interface Props {
-  gameId: number;
+  gameSlug: string | undefined;
 }
 
-function GameScreeshots({ gameId }: Props) {
-  const { data } = useScreeshots(gameId);
+function GameScreeshots({ gameSlug }: Props) {
+  if (!gameSlug) {
+    throw new Error("Slug not found!");
+  }
+
+  const { data, error, isLoading } = useScreeshots(gameSlug);  // Fetch screeshots by slug
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  const renderScreenshots = () => {
+    if (isLoading) {
+      return (
+        <Center w='100%' h='100%' >
+          <Spinner
+            thickness='4px'
+            speed='0.65s'
+            size='lg'
+          />
+        </Center>
+      );  // Render Spinner when is Loading
+    }
+
+    return data?.results.map(i =>
+      <Image
+        key={i.id}
+        src={getCroppedImageUrl(i.image)}
+        draggable='false'
+        borderRadius='1rem'
+        marginBottom='1rem'
+      />
+    );  // Render screenshots when they are available
+  };
 
   return (
     <Box position='fixed'>
-      <Box
-        position='absolute'
-        w='100%'
-        h='1rem'
-        zIndex='1'
-        backdropFilter='saturate(180%) blur(5px)'
-        bottom='-1px'
-      />
       <List
         overflowY='scroll'
         h='calc(102vh)'
+        w='calc(500px - 6rem)'
         css={{
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -32,15 +57,7 @@ function GameScreeshots({ gameId }: Props) {
         paddingTop='6rem'
         paddingBottom='1rem'
       >
-        {data?.results.map(i =>
-          <Image
-            key={i.id}
-            src={getCroppedImageUrl(i.image)}
-            draggable='false'
-            borderRadius='1rem'
-            marginBottom='1rem'
-          />
-        )}
+        {renderScreenshots()}
       </List>
     </Box>
   );

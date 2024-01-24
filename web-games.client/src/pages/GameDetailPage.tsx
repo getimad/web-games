@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, Show } from '@chakra-ui/react';
 import GameScreeshots from '../components/GameScreenshots';
 import GenreList from '../components/GenreList';
 import GameBackground from '../components/GameBackground';
@@ -15,25 +15,39 @@ function GameDetailPage() {
       <Grid
         templateAreas={{
           base: `'main'`,
-          lg: `'left main right'`
+          md: `'main right'`,
+          lg: `'left main right'`,
         }}
         gridTemplateColumns={{
           base: '1fr',
-          lg: '250px 1fr 500px'
+          md: '1fr 300px',
+          lg: '250px 1fr 300px'
         }}
+        marginX='3rem'
       >
-        <GridItem area='left' marginX='3rem'>
-          <GenreList />
-        </GridItem>
-        <GridItem area='main' marginX='3rem'>
+        <Show above='lg'>
+          <GridItem area='left'>
+            <GenreList />
+          </GridItem>
+        </Show>
+
+        <GridItem area='main' marginRight={{ md: '3rem' }}>
           <GameDetail gameSlug={slug} />
         </GridItem>
-        <GridItem area='right' marginX='3rem'>
-          <GameScreeshots gameSlug={slug} />
-        </GridItem>
+
+        <Show above='md'>
+          <GridItem area='right'>
+            <GameScreeshots gameSlug={slug} />
+          </GridItem>
+        </Show>
+
+        <Show below='md'>
+          <GridItem >
+            <GameScreeshots gameSlug={slug} mobile={true} />
+          </GridItem>
+        </Show>
       </Grid>
     </>
-
   );
 }
 

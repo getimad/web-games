@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@chakra-ui/react';
+import { List } from '@chakra-ui/react';
 import SearchResultItem from './SearchResultItem';
 import useSearch from '../hooks/useSearch';
 import { useEffect } from 'react';
@@ -21,9 +21,8 @@ function SearchResult({ searchQuery, onReady }: Props) {
   }, [isLoading, onReady]);
 
   return (
-    <SimpleGrid
-      spacing={2}
-      templateColumns='repeat(auto-fill, minmax(250px, 1fr))'
+    <List
+      spacing='0.5rem'
       overflowY='scroll'
       css={{
         '&::-webkit-scrollbar': {
@@ -33,7 +32,7 @@ function SearchResult({ searchQuery, onReady }: Props) {
     >
       {!isLoading
         && data?.results.map((game) => <SearchResultItem key={game.id} game={game} />)}
-    </SimpleGrid>
+    </List>
   );
 }
 

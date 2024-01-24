@@ -27,12 +27,13 @@ function SearchContainer({ onOpenSearchBox }: Props) {
         position='absolute'
         zIndex='301'
         backdropFilter='saturate(180%) blur(9px)'
-        onClick={() => onOpenSearchBox(false)} />
-      <Stack h="60%" w="60%" minH='500px' minW='400px' zIndex='302'>
+        onClick={() => onOpenSearchBox(false)}
+      />
+      <Stack h={{ base: '90vh', md: '85vh' }} w={{ base: '90vw', md: '60vw' }} zIndex='302' bottom='0' position='fixed'>
         <SearchBox isSearching={isSearching} query={searchQuery} onSearch={query => SetSearchQuery(query)} />
         <SearchResult onReady={isLoading => SetIsSearching(isLoading)} searchQuery={searchQuery} />
       </Stack>
-    </Center> 
+    </Center>
   );
 }
 

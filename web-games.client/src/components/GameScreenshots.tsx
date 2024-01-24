@@ -1,12 +1,13 @@
 import useScreeshots from '../hooks/useScreenshots';
-import { Box, Center, Image, List, Spinner } from '@chakra-ui/react';
+import { Box, Center, Image, List, ListItem, Spinner } from '@chakra-ui/react';
 import getCroppedImageUrl from '../services/get-cropped-image-url';
 
 interface Props {
   gameSlug: string | undefined;
+  mobile?: boolean;
 }
 
-function GameScreeshots({ gameSlug }: Props) {
+function GameScreeshots({ gameSlug, mobile }: Props) {
   const { data, error, isLoading } = useScreeshots(gameSlug!);  // Fetch screeshots by slug
 
   if (error) {
@@ -27,34 +28,45 @@ function GameScreeshots({ gameSlug }: Props) {
     }
 
     return data?.results.map(i =>
-      <Image
+      <ListItem
         key={i.id}
-        src={getCroppedImageUrl(i.image)}
-        draggable='false'
-        borderRadius='1rem'
         marginBottom='1rem'
-      />
+      >
+        <Image
+          src={getCroppedImageUrl(i.image)}
+          draggable='false'
+          borderRadius='1rem'
+          objectFit='fill'
+        />
+      </ListItem>
     );  // Render screenshots when they are available
   };
 
+  // Render for small devices
+  if (mobile) {
+    return (
+      <List marginTop='1rem'>
+        {renderScreenshots()}
+      </List>
+    );
+  }
+
+  // Normal render
   return (
-    <Box position='fixed'>
+    <Box position='fixed' h='90vh' w='300px' display='flex' justifyContent='right'>
       <List
         overflowY='scroll'
-        h='calc(102vh)'
-        w='calc(500px - 6rem)'
+        h='calc(100vh - 4rem)'
+        w='250px'
         css={{
           '&::-webkit-scrollbar': {
             display: 'none',
           }
         }}
-        marginRight='3rem'
-        marginTop='-5rem'
-        paddingTop='6rem'
       >
         {renderScreenshots()}
       </List>
-    </Box>
+    </Box >
   );
 }
 

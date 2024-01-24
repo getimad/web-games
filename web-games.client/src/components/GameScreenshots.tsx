@@ -7,11 +7,7 @@ interface Props {
 }
 
 function GameScreeshots({ gameSlug }: Props) {
-  if (!gameSlug) {
-    throw new Error("Slug not found!");
-  }
-
-  const { data, error, isLoading } = useScreeshots(gameSlug);  // Fetch screeshots by slug
+  const { data, error, isLoading } = useScreeshots(gameSlug!);  // Fetch screeshots by slug
 
   if (error) {
     throw new Error(error.message);
@@ -55,7 +51,6 @@ function GameScreeshots({ gameSlug }: Props) {
         marginRight='3rem'
         marginTop='-5rem'
         paddingTop='6rem'
-        paddingBottom='1rem'
       >
         {renderScreenshots()}
       </List>

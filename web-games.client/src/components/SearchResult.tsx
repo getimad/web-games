@@ -9,6 +9,11 @@ interface Props {
 }
 
 function SearchResult({ searchQuery, onReady }: Props) {
+  if (searchQuery === "") {
+    onReady(false);
+    return <></>;
+  }
+
   const { data, isLoading } = useSearch(searchQuery);
 
   useEffect(() => {
@@ -16,9 +21,18 @@ function SearchResult({ searchQuery, onReady }: Props) {
   }, [isLoading, onReady]);
 
   return (
-    <SimpleGrid spacing={2} templateColumns='repeat(auto-fill, minmax(250px, 1fr))' overflowY='scroll'>
+    <SimpleGrid
+      spacing={2}
+      templateColumns='repeat(auto-fill, minmax(250px, 1fr))'
+      overflowY='scroll'
+      css={{
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        }
+      }}
+    >
       {!isLoading
-        && data?.results.map((game, index) => <SearchResultItem key={index} game={game} />)}
+        && data?.results.map((game) => <SearchResultItem key={game.id} game={game} />)}
     </SimpleGrid>
   );
 }

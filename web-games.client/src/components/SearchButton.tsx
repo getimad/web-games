@@ -11,8 +11,7 @@ function SearchButton({ onOpenSearchBox }: Props) {
       justifyContent='left'
       leftIcon={<SearchIcon />}
       textColor='gray.500'
-      width='100%'
-      maxWidth={['100%', null, '250px']}
+      width={{ base: '10rem', md: '20rem', lg: '30rem' }}
       cursor='text'
       onClick={() => onOpenSearchBox(true)}
     >

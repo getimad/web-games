@@ -1,4 +1,4 @@
-import { Center, Heading, Spinner } from '@chakra-ui/react';
+import { Box, Center, Heading, Spinner } from '@chakra-ui/react';
 import useGame from '../hooks/useGame';
 import ExtandableText from '../components/ExtandableText';
 import GameAttributes from '../components/GameAttributes';
@@ -25,13 +25,18 @@ function GameDetail({ gameSlug }: Props) {
   }
 
   return (
-    <>
-      <Heading fontSize='6xl' w='500px' marginBottom='3rem'>{data.name}</Heading>
+    <Box width='100%'>
+      <Heading
+        fontSize={{ base: '5xl', xl: '6xl' }}
+        marginBottom='1.5rem'
+      >
+        {data.name}
+      </Heading>
       <ExtandableText title='About'>
         {data.description_raw}
       </ExtandableText>
       <GameAttributes game={data} />
-    </>
+    </Box>
   );
 }
 

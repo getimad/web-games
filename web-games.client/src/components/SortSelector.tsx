@@ -1,75 +1,59 @@
-import { useState } from 'react';
 import { Button, Menu, MenuButton, MenuDivider, MenuItemOption, MenuList, MenuOptionGroup } from '@chakra-ui/react';
 import { BsChevronDown } from 'react-icons/bs';
-import Order from '../interfaces/Order';
 import useGameQueryStore from '../store';
+import { useEffect, useRef, useState } from 'react';
 
 function SortSelector() {
-  const { gameQuery, setOrder } = useGameQueryStore(s => ({ gameQuery: s.gameQuery, setOrder: s.setOrder }));
+  const setOrderValue = useGameQueryStore(s => s.setOrderValue);
 
-  const [target, setTarget] = useState<Order | null>({ label: 'Relevance', value: '' });
-  const [orderBy, setOrderBy] = useState<string>('asc');
+  const [order, setOrder] = useState({ type: '', by: '' });
 
-  const getFirstOrDefaultValue = (value: string | string[]): string => {
-    if (typeof value !== 'string')
-      return value[0];
+  const firstRenderRef = useRef(true);
+  useEffect(() => {
+    // Prevent sending a request on the initial render of the component
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+      return;
+    }
 
-    return value;
-  };
+    setOrderValue(order.by + order.type);
+  }, [order])
 
-  const onSelectMenu = () => {
-    return setOrder({
-      label: target?.label ?? 'Relevance',
-      value: (orderBy === 'asc' ? '' : '-') + target?.value
-    });
-  };
-
-  const sortOrders: Order[] = [
-    { label: 'Relevance', value: '' },
-    { label: 'Date added', value: 'added' },
-    { label: 'Name', value: 'name' },
-    { label: 'Release date', value: 'released' },
-    { label: 'Popularity', value: 'metacritic' },
-    { label: 'Average rating', value: 'rating' }
+  const mainMenu = [
+    { id: 0, label: 'Relevance', value: '' },
+    { id: 1, label: 'Date added', value: 'added' },
+    { id: 2, label: 'Name', value: 'name' },
+    { id: 3, label: 'Release date', value: 'released' },
+    { id: 4, label: 'Popularity', value: 'metacritic' },
+    { id: 5, label: 'Average rating', value: 'rating' }
   ];
 
   return (
     <Menu closeOnSelect={false}>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order By: {gameQuery.order?.label ?? 'Relevance'}
+        Order By: {mainMenu.find(item => item.value === order.type)?.label}
       </MenuButton>
       <MenuList>
         <MenuOptionGroup
-          defaultValue=''
           title='Order By'
           type='radio'
-          value={target?.value}
-          onChange={value => {
-            setTarget(sortOrders.find(o => o.value === value) ?? null);
-            onSelectMenu();
-          }}
+          value={order.type}
+          onChange={(event) => setOrder({ ...order, type: event as string })}
         >
-          {sortOrders.map(order =>
-            <MenuItemOption
-              key={order.value}
-              value={order.value}
-            >
-              {order.label}
+          {mainMenu.map(item =>
+            <MenuItemOption key={item.id} value={item.value}>
+              {item.label}
             </MenuItemOption>
           )}
         </MenuOptionGroup>
         <MenuDivider />
         <MenuOptionGroup
-          defaultValue='asc'
           type='radio'
-          value={orderBy}
-          onChange={value => {
-            setOrderBy(getFirstOrDefaultValue(value));
-            onSelectMenu();
-          }}
+          value={order.by}
+          onChange={(event) => setOrder({ ...order, by: event as string })}
         >
-          <MenuItemOption value='asc'>Ascending</MenuItemOption>
-          <MenuItemOption value='desc'>Descending</MenuItemOption>
+          <MenuItemOption value=''>Ascending</MenuItemOption>
+          <MenuItemOption value='-'>Descending</MenuItemOption>
         </MenuOptionGroup>
       </MenuList>
     </Menu>

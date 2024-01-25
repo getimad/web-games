@@ -16,7 +16,7 @@ const useGames = (pageSize: number) => {
         page_size: pageSize,
         genres: gameQuery.genreId,
         parent_platforms: gameQuery.platformId,
-        ordering: gameQuery.order?.value,
+        ordering: gameQuery.orderValue,
         page: pageParam,
       }
     }),

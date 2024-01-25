@@ -4,6 +4,7 @@ import getCroppedImageUrl from '../services/get-cropped-image-url';
 import nullBackgroundImage from '../assets/null-image-white.svg';
 import PlatformIconList from './PlatformIconList';
 import { useNavigate } from 'react-router-dom';
+import useSearchStore from '../useSearchStore';
 
 interface Props {
   game: Game;
@@ -11,8 +12,10 @@ interface Props {
 
 function SearchResultItem({ game }: Props) {
   const navigate = useNavigate();
+  const setShowSearchBox = useSearchStore(s => s.setShowSearchBox);
 
   const onHandleClick = () => {
+    setShowSearchBox(false);
     navigate(`/games/${game.slug}`, { state: { imageUri: game.background_image } });
   };
 

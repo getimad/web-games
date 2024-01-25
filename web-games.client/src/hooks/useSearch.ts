@@ -19,7 +19,7 @@ const useSearch = () => {
       }
     }),
     staleTime: 0,
-    gcTime: 0
+    gcTime: 60 * 1000  // 1 minute
   })
 };
 

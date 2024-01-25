@@ -4,7 +4,7 @@ import SearchResult from './SearchResult';
 import useSearchStore from '../useSearchStore';
 
 function SearchContainer() {
-  const setShowSearchBox = useSearchStore(s => s.setShowSearchBox);
+  const { setSearchQuery, setShowSearchBox } = useSearchStore(s => ({ setSearchQuery: s.setSearchQuery, setShowSearchBox: s.setShowSearchBox }));
 
   return (
     <Center
@@ -22,7 +22,10 @@ function SearchContainer() {
         position='absolute'
         zIndex='301'
         backdropFilter='saturate(180%) blur(9px)'
-        onClick={() => setShowSearchBox(false)}
+        onClick={() => {
+          setShowSearchBox(false);
+          setSearchQuery('');
+        }}
       />
       <Stack maxH={{ base: '90vh', md: '85vh' }} w={{ base: '90vw', md: '60vw' }} zIndex='302' top={{ base: '10vh', md: '15vh' }} position='fixed'>
         <SearchBox />

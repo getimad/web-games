@@ -12,9 +12,10 @@ interface Props {
 
 function SearchResultItem({ game }: Props) {
   const navigate = useNavigate();
-  const setShowSearchBox = useSearchStore(s => s.setShowSearchBox);
+  const { setSearchQuery, setShowSearchBox } = useSearchStore(s => ({ setSearchQuery: s.setSearchQuery, setShowSearchBox: s.setShowSearchBox }));
 
   const onHandleClick = () => {
+    setSearchQuery('');
     setShowSearchBox(false);
     navigate(`/games/${game.slug}`, { state: { imageUri: game.background_image } });
   };

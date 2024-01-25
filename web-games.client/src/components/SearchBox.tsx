@@ -3,7 +3,7 @@ import { Input, InputGroup, InputLeftElement, InputRightElement, Spinner } from 
 import useSearchStore from '../useSearchStore';
 
 function SearchBox() {
-  const { isSearching, searchQuery, setSearchQuery } = useSearchStore(s => ({ isSearching: s.isSearching, searchQuery: s.searchQuery, setSearchQuery: s.setSearchQuery }));
+  const { searchQuery, isSearching, setSearchQuery } = useSearchStore(s => ({ searchQuery: s.searchQuery, isSearching: s.isSearching, setSearchQuery: s.setSearchQuery }));
 
   return (
     <InputGroup>

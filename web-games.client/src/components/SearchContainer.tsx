@@ -1,15 +1,10 @@
 import { Box, Center, Stack } from '@chakra-ui/react';
 import SearchBox from './SearchBox';
 import SearchResult from './SearchResult';
-import { useState } from 'react';
+import useSearchStore from '../useSearchStore';
 
-interface Props {
-  onOpenSearchBox: (close: boolean) => void;
-}
-
-function SearchContainer({ onOpenSearchBox }: Props) {
-  const [searchQuery, SetSearchQuery] = useState<string>('');
-  const [isSearching, SetIsSearching] = useState<boolean>(false);
+function SearchContainer() {
+  const setShowSearchBox = useSearchStore(s => s.setShowSearchBox);
 
   return (
     <Center
@@ -27,11 +22,11 @@ function SearchContainer({ onOpenSearchBox }: Props) {
         position='absolute'
         zIndex='301'
         backdropFilter='saturate(180%) blur(9px)'
-        onClick={() => onOpenSearchBox(false)}
+        onClick={() => setShowSearchBox(false)}
       />
-      <Stack h={{ base: '90vh', md: '85vh' }} w={{ base: '90vw', md: '60vw' }} zIndex='302' bottom='0' position='fixed'>
-        <SearchBox isSearching={isSearching} query={searchQuery} onSearch={query => SetSearchQuery(query)} />
-        <SearchResult onReady={isLoading => SetIsSearching(isLoading)} searchQuery={searchQuery} />
+      <Stack maxH={{ base: '90vh', md: '85vh' }} w={{ base: '90vw', md: '60vw' }} zIndex='302' top={{ base: '10vh', md: '15vh' }} position='fixed'>
+        <SearchBox />
+        <SearchResult />
       </Stack>
     </Center>
   );

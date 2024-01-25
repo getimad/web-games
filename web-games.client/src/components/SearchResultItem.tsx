@@ -3,13 +3,18 @@ import Game from '../interfaces/Game';
 import getCroppedImageUrl from '../services/get-cropped-image-url';
 import nullBackgroundImage from '../assets/null-image-white.svg';
 import PlatformIconList from './PlatformIconList';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   game: Game;
 }
 
 function SearchResultItem({ game }: Props) {
-  console.log(game);
+  const navigate = useNavigate();
+
+  const onHandleClick = () => {
+    navigate(`/games/${game.slug}`, { state: { imageUri: game.background_image } });
+  };
 
   return (
     <Card
@@ -17,6 +22,7 @@ function SearchResultItem({ game }: Props) {
       minH='120px'
       size='sm'
       cursor='pointer'
+      onClick={onHandleClick}
     >
       <HStack >
         <Center margin='1rem'>

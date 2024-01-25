@@ -1,19 +1,20 @@
-import { Box, Flex, Image, useColorMode } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import whiteLogo from '../assets/logo-white.svg';
-import blackLogo from '../assets/logo-black.svg';
+import { Box, Flex, Image, useColorMode } from '@chakra-ui/react';
 import ToggleThemeSwitch from './ToggleThemeSwitch';
-import { useEffect, useState } from 'react';
 import SearchButton from './SearchButton';
 import SearchContainer from './SearchContainer';
+import useSearchStore from '../useSearchStore';
+import whiteLogo from '../assets/logo-white.svg';
+import blackLogo from '../assets/logo-black.svg';
 
 function NavBar() {
   const { colorMode } = useColorMode();
-  const [openSearchBox, setOpenSearchBox] = useState<boolean>(false);
+  const showSearchBox = useSearchStore(s => s.showSearchBox);
 
   useEffect(() => {
-    document.body.style.overflow = openSearchBox ? 'hidden' : 'visible';
-  }, [openSearchBox]);
+    document.body.style.overflow = showSearchBox ? 'hidden' : 'visible';
+  }, [showSearchBox]);
 
   return (
     <>
@@ -22,11 +23,11 @@ function NavBar() {
           <Link to='/'>
             <Image src={colorMode === 'dark' ? whiteLogo : blackLogo} boxSize={9} />
           </Link>
-          <SearchButton onOpenSearchBox={open => setOpenSearchBox(open)} />
+          <SearchButton />
           <ToggleThemeSwitch />
         </Flex>
       </Box>
-      {openSearchBox && <SearchContainer onOpenSearchBox={close => setOpenSearchBox(close)} />}
+      {showSearchBox && <SearchContainer />}
     </>
   );
 }

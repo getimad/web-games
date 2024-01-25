@@ -2,23 +2,15 @@ import { List } from '@chakra-ui/react';
 import SearchResultItem from './SearchResultItem';
 import useSearch from '../hooks/useSearch';
 import { useEffect } from 'react';
+import useSearchStore from '../useSearchStore';
 
-interface Props {
-  searchQuery: string;
-  onReady: (onReady: boolean) => void;
-}
-
-function SearchResult({ searchQuery, onReady }: Props) {
-  if (searchQuery === "") {
-    onReady(false);
-    return <></>;
-  }
-
-  const { data, isLoading } = useSearch(searchQuery);
+function SearchResult() {
+  const setIsSearching = useSearchStore(s => s.setIsSearching);
+  const { data, isLoading } = useSearch();
 
   useEffect(() => {
-    onReady(isLoading);
-  }, [isLoading, onReady]);
+    setIsSearching(isLoading);
+  }, [isLoading]);
 
   return (
     <List

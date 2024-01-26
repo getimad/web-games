@@ -1,7 +1,16 @@
+import { useEffect, useRef, useState } from 'react';
 import { Button, Menu, MenuButton, MenuDivider, MenuItemOption, MenuList, MenuOptionGroup } from '@chakra-ui/react';
 import { BsChevronDown } from 'react-icons/bs';
 import useGameQueryStore from '../store';
-import { useEffect, useRef, useState } from 'react';
+
+const mainMenu = [
+  { id: 0, label: 'Relevance', value: '' },
+  { id: 1, label: 'Date added', value: 'added' },
+  { id: 2, label: 'Name', value: 'name' },
+  { id: 3, label: 'Release date', value: 'released' },
+  { id: 4, label: 'Popularity', value: 'metacritic' },
+  { id: 5, label: 'Average rating', value: 'rating' }
+];
 
 function SortSelector() {
   const setOrderValue = useGameQueryStore(s => s.setOrderValue);
@@ -18,15 +27,6 @@ function SortSelector() {
 
     setOrderValue(order.by + order.type);
   }, [order])
-
-  const mainMenu = [
-    { id: 0, label: 'Relevance', value: '' },
-    { id: 1, label: 'Date added', value: 'added' },
-    { id: 2, label: 'Name', value: 'name' },
-    { id: 3, label: 'Release date', value: 'released' },
-    { id: 4, label: 'Popularity', value: 'metacritic' },
-    { id: 5, label: 'Average rating', value: 'rating' }
-  ];
 
   return (
     <Menu closeOnSelect={false}>

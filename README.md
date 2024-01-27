@@ -23,4 +23,6 @@ This project is licensed under the MIT License.
 
 If you have any questions, feel free to reach out to me at:
 
-- LinkedIn: [Imad Ez-zahi](https://www.linkedin.com/in/getimad/)
+<a href="https://www.linkedin.com/in/getimad/" target="_blank">
+  <img alt="Static Badge" src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin">
+</a>

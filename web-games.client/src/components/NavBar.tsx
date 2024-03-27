@@ -43,7 +43,7 @@ function NavBar() {
               <Image
                 src={colorMode === "dark" ? whiteLogo : blackLogo}
                 onClick={goToHomePage}
-                height={12}
+                height={10}
               />
             </Flex>
           </Link>
